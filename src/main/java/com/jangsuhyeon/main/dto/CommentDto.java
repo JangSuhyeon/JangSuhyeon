@@ -9,6 +9,7 @@ import lombok.ToString;
 public class CommentDto {
 
     private String cmtFrmName;
+    private String cmtFrmPassword;
     private String cmtFrmComment;
 
 }

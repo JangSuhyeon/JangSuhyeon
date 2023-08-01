@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("")
 public class MainController {
 
+    // 메인 화면으로
     @GetMapping("")
     public String goToIndex() {
         return "pages/index";
     }
 
+    // 댓글 저장
     @PostMapping(value = "/comment")
     @ResponseBody
     public ResponseEntity saveComment(CommentDto commentDto) {
