@@ -1,25 +1,30 @@
 package com.jangsuhyeon.main.controller;
 
-import com.jangsuhyeon.main.dto.CommentDto;
-import org.springframework.http.ResponseEntity;
+import com.jangsuhyeon.comment.domain.dto.CommentRequestDto;
+import com.jangsuhyeon.comment.domain.dto.CommentResponseDto;
+import com.jangsuhyeon.comment.service.CommentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("")
 public class MainController {
 
+    private final CommentService commentService;
+
     // 메인 화면으로
     @GetMapping("")
-    public String goToIndex() {
-        return "pages/index";
-    }
+    public String goToIndex(Model model) {
 
-    // 댓글 저장
-    @PostMapping(value = "/comment")
-    @ResponseBody
-    public ResponseEntity saveComment(CommentDto commentDto) {
-        System.out.println(commentDto.toString());
-        return ResponseEntity.ok("댓글 저장 성공");
+        // 댓글 전체 조회
+        List<CommentResponseDto> commentList = commentService.findAll();
+        model.addAttribute("commentList", commentList);
+
+        return "pages/index";
     }
 }
