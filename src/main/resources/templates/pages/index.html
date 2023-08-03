@@ -219,11 +219,11 @@
                             <li>Java</li>
                             <li>Spring Boot</li>
                             <li>Spring Security</li>
+                            <li>MySQL</li>
                             <li>MyBatis</li>
                             <li>JPA</li>
                             <li>Gradle</li>
                             <li>Maven</li>
-                            <li>MySQL</li>
                         </ul>
                     </div>
                     <div class="col-12 wow fadeIn" data-wow-delay="0.2s">
@@ -233,7 +233,13 @@
                             </div>
                             <h6 class="mb-0">Front-End</h6>
                         </div>
-                        <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos diam dolor</span>
+                        <ul class="skill-ul">
+                            <li>JavaScript</li>
+                            <li>jQuery</li>
+                            <li>JSP/JSTL</li>
+                            <li>HTML/CSS</li>
+                            <li>Thymeleaf</li>
+                        </ul>
                     </div>
                     <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
                         <div class="d-flex align-items-center mb-3">
@@ -242,7 +248,12 @@
                             </div>
                             <h6 class="mb-0">etc.</h6>
                         </div>
-                        <span>Magna sea eos sit dolor, ipsum amet ipsum lorem diam eos diam dolor</span>
+                        <ul class="skill-ul">
+                            <li>Intellij IDEA</li>
+                            <li>Jira</li>
+                            <li>Github</li>
+                            <li>Subversion</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -270,20 +281,20 @@
 <!-- Client End -->
 
 
-<!-- Team Start -->
-<div class="container-xxl py-6">
+<!-- Portfolio Start -->
+<div id="section3" class="container-xxl py-6">
     <div class="container">
         <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-            <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Our Team</div>
+            <div class="d-inline-block border rounded-pill text-primary px-4 mb-3 blue-gradation">Portfolio</div>
             <h2 class="mb-5">Meet Our Team Members</h2>
         </div>
         <div class="row g-4">
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style="cursor:pointer;" onclick="window.open('/shop');">
                 <div class="team-item">
-                    <h5>Full Name</h5>
-                    <p class="mb-4">Designation</p>
-                    <img class="img-fluid rounded-circle w-100 mb-4" src="img/team-1.jpg" alt="">
-                    <div class="d-flex justify-content-center">
+                    <h5>쇼핑몰</h5>
+                    <p class="mb-4">Designation</p><!--Todo 간단설명추가-->
+                    <img class="img-fluid rounded-circle w-100 mb-4" src="img/p_shoppingmall.png" alt="">
+                    <div class="d-flex justify-content-center"><!--Todo 어떤걸로 넣징..?-->
                         <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square text-primary bg-white m-1" href=""><i class="fab fa-linkedin-in"></i></a>
@@ -292,7 +303,7 @@
             </div>
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item">
-                    <h5>Full Name</h5>
+                    <h5>채팅</h5>
                     <p class="mb-4">Designation</p>
                     <img class="img-fluid rounded-circle w-100 mb-4" src="img/team-2.jpg" alt="">
                     <div class="d-flex justify-content-center">
@@ -304,7 +315,7 @@
             </div>
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="team-item">
-                    <h5>Full Name</h5>
+                    <h5>프로젝트관리</h5>
                     <p class="mb-4">Designation</p>
                     <img class="img-fluid rounded-circle w-100 mb-4" src="img/team-3.jpg" alt="">
                     <div class="d-flex justify-content-center">
@@ -329,15 +340,15 @@
         </div>
     </div>
 </div>
-<!-- Team End -->
+<!-- Portfolio End -->
 
 
 <!-- Comment Start -->
-<div id="section3" class="container-xxl py-6">
+<div id="section4" class="container-xxl py-6">
     <div class="container">
         <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
             <div class="d-inline-block border rounded-pill text-primary px-4 mb-3 blue-gradation">Comment</div>
-            <h2 class="mb-5">댓글을 남겨주셔서 감사합니다!</h2>
+            <h2 class="mb-5">댓글을 남겨주셔서 감사합니다:)</h2>
         </div>
         <div id="commentList" class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
             <div th:each="comment : ${commentList}" class="testimonial-item rounded p-4">

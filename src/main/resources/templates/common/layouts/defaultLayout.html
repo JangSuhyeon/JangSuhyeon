@@ -5,7 +5,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 
-<head th:replace="common/fragments/defaultConfigFragment :: DefaultConfigFragment"></head>
+<head th:replace="~{common/fragments/defaultConfigFragment :: DefaultConfigFragment}"></head>
 
 <body>
 
@@ -20,13 +20,13 @@
     <!-- Spinner End -->
 
     <div id="section1" class="position-relative p-0">
-    <header th:replace="common/fragments/defaultHeaderFragment :: DefaultHeaderFragment"></header>
+    <header th:replace="~{common/fragments/defaultHeaderFragment :: DefaultHeaderFragment}"></header>
 
     <th:block layout:fragment="Content"></th:block>
 </div>
 
 
-<footer th:replace="common/fragments/defaultFooterFragment :: DefaultFooterFragment"></footer>
+<footer th:replace="~{common/fragments/defaultFooterFragment :: DefaultFooterFragment}"></footer>
 
 
 

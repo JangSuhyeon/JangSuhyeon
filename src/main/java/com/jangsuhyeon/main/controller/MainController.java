@@ -20,7 +20,7 @@ public class MainController {
     @GetMapping("")
     public String goToIndex(Model model) {
 
-        // 댓글 전체 조회
+        // 전체 댓글 조회
         List<CommentResponseDto> commentList = commentService.findAll();
         model.addAttribute("commentList", commentList);
 

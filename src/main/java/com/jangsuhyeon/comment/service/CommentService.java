@@ -26,7 +26,7 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
-    // 댓글 전체 조회
+    // 전체 댓글 조회
     public List<CommentResponseDto> findAll() {
 
         // 최신등록순

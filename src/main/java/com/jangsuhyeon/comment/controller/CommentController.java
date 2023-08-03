@@ -28,7 +28,7 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.OK).body("Data saved!");
     }
 
-    // 댓글 전체 조회 JSON
+    // 전체 댓글 조회 JSON
     @GetMapping("")
     @ResponseBody
     public ResponseEntity findAll() {
