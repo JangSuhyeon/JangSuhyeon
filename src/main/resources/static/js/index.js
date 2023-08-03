@@ -1,5 +1,32 @@
 $(function () {
 
+    /*// 메뉴 클릭 시 활성화
+    $('.nav-link').click(function () {
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active');
+    })*/
+
+    function onScroll() {
+        const scrollPosition = $(window).scrollTop();
+        const sectionElements = $('[id^="section"]');
+        sectionElements.each(function() {
+            const section = $(this);
+            const topOffset = section.offset().top - 400;
+            const bottomOffset = topOffset + section.outerHeight();
+            if (scrollPosition >= topOffset && scrollPosition < bottomOffset) {
+                const sectionId = section.attr('id');
+                $(".nav-link").each(function() {
+                    if ($(this).attr('href') === `#${sectionId}`) {
+                        $(".nav-link").removeClass('active');
+                        $(this).addClass('active');
+                    }
+                });
+            }
+        });
+    }
+
+    $(window).on('scroll', onScroll);
+
     // 댓글 스와이프 새로고침
     function ReloadComment() {
         $.ajax({

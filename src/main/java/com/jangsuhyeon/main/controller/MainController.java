@@ -1,6 +1,5 @@
 package com.jangsuhyeon.main.controller;
 
-import com.jangsuhyeon.comment.domain.dto.CommentRequestDto;
 import com.jangsuhyeon.comment.domain.dto.CommentResponseDto;
 import com.jangsuhyeon.comment.service.CommentService;
 import lombok.RequiredArgsConstructor;
