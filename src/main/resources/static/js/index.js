@@ -1,11 +1,5 @@
 $(function () {
 
-    /*// 메뉴 클릭 시 활성화
-    $('.nav-link').click(function () {
-        $('.nav-link').removeClass('active');
-        $(this).addClass('active');
-    })*/
-
     function onScroll() {
         const scrollPosition = $(window).scrollTop();
         const sectionElements = $('[id^="section"]');

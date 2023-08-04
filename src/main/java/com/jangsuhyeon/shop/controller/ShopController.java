@@ -1,5 +1,6 @@
 package com.jangsuhyeon.shop.controller;
 
+import com.jangsuhyeon.shop.domain.dto.CategoryResponseDto;
 import com.jangsuhyeon.shop.domain.dto.ProductResponseDto;
 import com.jangsuhyeon.shop.service.ShopService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -29,6 +31,22 @@ public class ShopController {
         model.addAttribute("productList", productList);
 
         return "pages/shop/index";
+    }
+
+    // product 화면으로
+    @GetMapping("/product")
+    public String goToProduct(@RequestParam(name = "category", defaultValue = "1")int cateId, Model model) {
+
+        // 카테고리 조회
+        List<CategoryResponseDto> categoryList = shopService.findAllCategory();
+        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("currentCategory", cateId);
+
+        // Todo 카테고리에 맞는 상품만 조회
+        List<ProductResponseDto> productList = shopService.findAllByCateId(cateId);
+        model.addAttribute("productList", productList);
+
+        return "pages/shop/product";
     }
 
 }

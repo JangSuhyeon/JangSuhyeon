@@ -23,6 +23,9 @@ public class Product {
     private String prtImgUrl;
 
     @Column
+    private Long cateId;
+
+    @Column
     private LocalDateTime regDt;
 
     @PrePersist

@@ -4,12 +4,11 @@
       layout:decorate="~{common/layouts/shopLayout}"
       layout:fragment="Content">
 
-<!-- Product Catagories Area Start -->
 <div class="products-catagories-area clearfix">
-    <div class="amado-pro-catagory clearfix" th:each="product : ${productList}">
+    <div class="amado-pro-catagory clearfix">
 
         <!-- Single Catagory -->
-        <div class="single-products-catagory clearfix">
+        <div class="single-products-catagory clearfix" th:each="product : ${productList}">
             <a href="shop.html">
                 <img th:src="${product.prtImgUrl}" alt="">
                 <!-- Hover Content -->
@@ -22,6 +21,5 @@
         </div>
     </div>
 </div>
-<!-- Product Catagories Area End -->
+
 </div>
-<!-- ##### Main Content Wrapper End ##### -->
