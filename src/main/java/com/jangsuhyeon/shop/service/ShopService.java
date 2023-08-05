@@ -47,11 +47,10 @@ public class ShopService {
     }
 
     // 해당 카테고리의 상품 조회
-    public List<ProductResponseDto> findAllByCateId(int cateId) {
+    public List<ProductResponseDto> findAllByCateId(Long cateId, Pageable pageable) {
 
-        // 등록순
-        Sort sort = Sort.by(Sort.Direction.DESC, "regDt");
-        Page<Product> productList = productRepository.findAllByCateId(cateId);
+        // 최신등록순
+        Page<Product> productList = productRepository.findAllByCateIdOrderByRegDtDesc(cateId, pageable);
 
         // Entity -> DTO
         List<ProductResponseDto> productResponseDtoList = ProductResponseDto.toDtoList(productList);

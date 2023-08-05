@@ -35,7 +35,7 @@ public class ShopController {
 
     // product 화면으로
     @GetMapping("/product")
-    public String goToProduct(@RequestParam(name = "category", defaultValue = "1")int cateId, Model model) {
+    public String goToProduct(@RequestParam(name = "category", defaultValue = "1")Long cateId, Model model) {
 
         // 카테고리 조회
         List<CategoryResponseDto> categoryList = shopService.findAllCategory();
@@ -43,7 +43,8 @@ public class ShopController {
         model.addAttribute("currentCategory", cateId);
 
         // Todo 카테고리에 맞는 상품만 조회
-        List<ProductResponseDto> productList = shopService.findAllByCateId(cateId);
+        Pageable pageable = PageRequest.of(0,9);
+        List<ProductResponseDto> productList = shopService.findAllByCateId(cateId, pageable);
         model.addAttribute("productList", productList);
 
         return "pages/shop/product";
