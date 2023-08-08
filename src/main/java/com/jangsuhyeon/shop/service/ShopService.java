@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -73,15 +74,25 @@ public class ShopService {
         return brandResponseDtoList;
     }
 
-    // 해당 브랜드의 상품 조회
-    public List<ProductResponseDto> findByBrdIdIn(Long[] checkedBrands, Pageable pageable) {
+    // 해당 카테고리 + 브랜드의 상품만 조회
+    public List<ProductResponseDto> findByCateIdAndBrdIdIn(Long cateId, Long[] checkedBrands, Pageable pageable) {
 
         // 등록순
-        Page<Product> productList = productRepository.findByBrdIdIn(checkedBrands, pageable);
+        Page<Product> productList = productRepository.findByCateIdAndBrdIdIn(cateId, checkedBrands, pageable);
 
         // Entity -> DTO
         List<ProductResponseDto> productResponseDtoList = ProductResponseDto.toDtoList(productList);
 
         return productResponseDtoList;
+    }
+
+    // 상품의 최저가, 최고가 조회
+    public HashMap<String, Integer> findByPrtPriceRange() {
+
+        HashMap<String, Integer> priceRange = new HashMap<>();
+        priceRange.put("max", productRepository.findMaxPrtPrice());
+        priceRange.put("min", productRepository.findMinPrtPrice());
+
+        return priceRange;
     }
 }

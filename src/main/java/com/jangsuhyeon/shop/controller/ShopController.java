@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -48,6 +49,11 @@ public class ShopController {
         List<BrandResponseDto> brandList = shopService.findAllBrand();
         model.addAttribute("brandList", brandList);
 
+        // 상품의 최저가, 최고가 조회
+        HashMap<String, Integer> priceRange = shopService.findByPrtPriceRange();
+        model.addAttribute("priceRange", priceRange);
+
+        // Todo findAllByCateId 합쳐도 될 것 같은데?
         // 해당 카테고리의 상품만 조회
         Pageable pageable = PageRequest.of(0,9);
         List<ProductResponseDto> productList = shopService.findAllByCateId(cateId, pageable);
@@ -58,20 +64,24 @@ public class ShopController {
 
     // Todo 분석필요
     // 상품 조회 JSON
-    @ResponseBody
     @GetMapping("/product/json")
-    public ResponseEntity getProductListAsJson (@RequestParam(value = "checkedBrand") String checkedBrandJson, Model model) {
-
+    public String getProductListAsJson (
+            @RequestParam(value = "cateId") Long cateId,
+            @RequestParam(value = "checkedBrand") String checkedBrandJson,
+            @RequestParam(value = "maxPrice") int maxPrice,
+            @RequestParam(value = "minPrice") int minPrice,
+            Model model) {
+        System.out.println(maxPrice);
+        System.out.println(minPrice);
         // JSON -> Long[]
         Long[] checkedBrands = new Gson().fromJson(checkedBrandJson, Long[].class);
 
-        // Todo 카테고리 조건도 추가
-        // 해당 브랜드의 상품만 조회
+        // 해당 카테고리 + 브랜드의 상품만 조회
         Pageable pageable = PageRequest.of(0,9);
-        List<ProductResponseDto> productList = shopService.findByBrdIdIn(checkedBrands, pageable);
+        List<ProductResponseDto> productList = shopService.findByCateIdAndBrdIdIn(cateId, checkedBrands, pageable);
         model.addAttribute("productList", productList);
 
-        return ResponseEntity.ok(productList);
+        return "pages/shop/product :: #product-list";
     }
 
 }

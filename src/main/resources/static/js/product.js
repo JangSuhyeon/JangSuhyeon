@@ -1,15 +1,29 @@
 // 상품 목록 reload
-function reloadProductList(checkedBrand) {
-    console.log(checkedBrand);
+function reloadProductList(maxPrice, minPrice) {
+
+    // 체크된 브랜드 모으기
+    const brandCheckbox = $('[name="brandCheckbox"]');
+    const checkedBrand = [];
+    brandCheckbox.each(function () {
+        if ($(this).prop('checked')) {
+            checkedBrand.push($(this).val());
+        }
+    });
+
     $.ajax({
         type:"GET",
         url:"/shop/product/json",
-        data:{ checkedBrand: JSON.stringify(checkedBrand) },
+        data:{
+            cateId : $('#currentCategory').val(),
+            checkedBrand: JSON.stringify(checkedBrand),
+            maxPrice : maxPrice === null ? $('#maxPrice').val() : maxPrice,
+            minPrice : minPrice === null ? $('#minPrice').val() : minPrice
+        },
         contentType: "application/json; charset=utf-8",
         success:function (res) {
-            console.log(res);
-            // Todo 상품 목록 출력
             $('#product-list').replaceWith(res);
+            
+            // Todo 없으면 표시해주기
         },
         error:function () {
             console.error("Failed to reload the product list.")
@@ -19,20 +33,10 @@ function reloadProductList(checkedBrand) {
 
 $(function () {
 
-    // 브랜드 체크시 이벤트
+    // 브랜드 체크 이벤트
     $("input[name='brandCheckbox']").change(function () {
-        // 체크된 브랜드 모으기
-        const brandCheckbox = $('[name="brandCheckbox"]');
-        const checkedBrand = [];
-
-        brandCheckbox.each(function () {
-            if ($(this).prop('checked')) {
-                checkedBrand.push($(this).val());
-            }
-        });
-
         // 상품 목록 reload
-        reloadProductList(checkedBrand);
+        reloadProductList();
     })
 
 })

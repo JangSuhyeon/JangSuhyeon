@@ -6,7 +6,10 @@
 
 <script th:src="@{/js/product.js}"></script>
 
-<input type="hidden" th:value="${currentCategory}">
+<input type="hidden" id="currentCategory" th:value="${currentCategory}">
+<input type="hidden" id="maxPrice" th:value="${priceRange.max}">
+<input type="hidden" id="minPrice" th:value="${priceRange.min}">
+
 <div class="shop_sidebar_area">
 
   <!-- ##### Single Widget ##### -->
@@ -32,7 +35,7 @@
     <div class="widget-desc">
       <!-- Single Form Check -->
       <div class="form-check" th:each="brand : ${brandList}">
-        <input class="form-check-input" name="brandCheckbox" type="checkbox" th:id="${brand.brdName}" th:value="${brand.brdId}">
+        <input class="form-check-input" name="brandCheckbox" type="checkbox" th:id="${brand.brdName}" th:value="${brand.brdId}" checked>
         <label class="form-check-label" th:for="${brand.brdName}" th:text="${brand.brdName}"></label>
       </div>
     </div>
@@ -45,12 +48,12 @@
 
     <div class="widget-desc">
       <div class="slider-range">
-        <div data-min="10" data-max="1000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="10" data-value-max="1000" data-label-result="">
+        <div th:data-min="${priceRange.min}" th:data-max="${priceRange.max}" data-unit="원" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" th:data-value-min="${priceRange.min}" th:data-value-max="${priceRange.max}" data-label-result="">
           <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
           <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
           <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
         </div>
-        <div class="range-price">$10 - $1000</div>
+        <div class="range-price"><span th:text="${#numbers.formatInteger(priceRange.min, 3, 'COMMA') + '원'}"></span> - <span th:text="${#numbers.formatInteger(priceRange.max, 3, 'COMMA') + '원'}"></span></div>
       </div>
     </div>
   </div>
@@ -98,10 +101,9 @@
       </div>
     </div>
 
-    <div class="row">
-
+    <div class="row" id="product-list">
       <!-- Single Product Area -->
-      <div id="product-list" class="col-12 col-sm-6 col-md-12 col-xl-6" th:each="product : ${productList}">
+      <div class="col-12 col-sm-6 col-md-12 col-xl-6" th:each="product : ${productList}">
         <div class="single-product-wrapper">
           <!-- Product Image -->
           <div class="product-img">
