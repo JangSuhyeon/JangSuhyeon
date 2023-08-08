@@ -51,7 +51,7 @@
         <!-- Amado Nav -->
         <nav class="amado-nav">
             <ul>
-                <li class="active"><a href="/shop">Home</a></li>
+                <li><a href="/shop">Home</a></li>
                 <li><a href="/shop/product">Shop</a></li>
                 <li><a href="cart.html">Cart</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
@@ -76,4 +76,16 @@
             <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
         </div>
     </header>
+    <script>
+        $(document).ready(function() {
+            var currentPath = window.location.pathname;
+
+            $(".amado-nav ul li a").each(function() {
+                var linkPath = $(this).attr("href");
+                if (currentPath === linkPath) {
+                    $(this).parent("li").addClass("active");
+                }
+            });
+        });
+    </script>
     <!-- Header Area End -->

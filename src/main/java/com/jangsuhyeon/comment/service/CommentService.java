@@ -5,7 +5,6 @@ import com.jangsuhyeon.comment.domain.dto.CommentRequestDto;
 import com.jangsuhyeon.comment.domain.dto.CommentResponseDto;
 import com.jangsuhyeon.comment.domain.entity.Comment;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,15 +29,10 @@ public class CommentService {
     public List<CommentResponseDto> findAll() {
 
         // 최신등록순
-        Sort sort = Sort.by(Sort.Direction.DESC, "regDt");
-        List<Comment> commentList = commentRepository.findAll(sort);
+        List<Comment> commentList = commentRepository.findAllByOrderByRegDtDesc();
 
         // Entity -> DTO
-        List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
-        for (Comment comment : commentList) {
-            CommentResponseDto commentResponseDto = CommentResponseDto.toDto(comment);
-            commentResponseDtoList.add(commentResponseDto);
-        }
+        List<CommentResponseDto> commentResponseDtoList = CommentResponseDto.toDtoList(commentList);
 
         return commentResponseDtoList;
     }

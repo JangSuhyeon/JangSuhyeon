@@ -1,17 +1,20 @@
 package com.jangsuhyeon.shop.service;
 
+import com.jangsuhyeon.shop.domain.dto.BrandResponseDto;
 import com.jangsuhyeon.shop.domain.dto.CategoryResponseDto;
 import com.jangsuhyeon.shop.domain.dto.ProductResponseDto;
+import com.jangsuhyeon.shop.domain.entity.Brand;
 import com.jangsuhyeon.shop.domain.entity.Category;
 import com.jangsuhyeon.shop.domain.entity.Product;
+import com.jangsuhyeon.shop.repository.BrandRepository;
 import com.jangsuhyeon.shop.repository.CategoryRepository;
 import com.jangsuhyeon.shop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -20,6 +23,7 @@ public class ShopService {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final BrandRepository brandRepository;
 
     // 전체 상품 조회
     public List<ProductResponseDto> findAll(Pageable pageable) {
@@ -37,8 +41,7 @@ public class ShopService {
     public List<CategoryResponseDto> findAllCategory() {
 
         // 등록순
-        Sort sort = Sort.by(Sort.Direction.ASC, "cateId");
-        List<Category> categoryList = categoryRepository.findAll(sort);
+        List<Category> categoryList = categoryRepository.findAllByOrderByCateId();
 
         // Entity -> DTO
         List<CategoryResponseDto> categoryResponseDtoList  = CategoryResponseDto.toDtoList(categoryList);
@@ -51,6 +54,30 @@ public class ShopService {
 
         // 최신등록순
         Page<Product> productList = productRepository.findAllByCateIdOrderByRegDtDesc(cateId, pageable);
+
+        // Entity -> DTO
+        List<ProductResponseDto> productResponseDtoList = ProductResponseDto.toDtoList(productList);
+
+        return productResponseDtoList;
+    }
+
+    // 브랜드 조회
+    public List<BrandResponseDto> findAllBrand() {
+
+        // 등록순
+        List<Brand> brandList = brandRepository.findAllByOrderByBrdId();
+
+        // Entity -> DTO
+        List<BrandResponseDto> brandResponseDtoList = BrandResponseDto.toDtoList(brandList);
+
+        return brandResponseDtoList;
+    }
+
+    // 해당 브랜드의 상품 조회
+    public List<ProductResponseDto> findByBrandIdIn(Long[] checkedBrands) {
+
+        // 등록순
+        Page<Product> productList = productRepository.findByBrandIdIn(checkedBrands);
 
         // Entity -> DTO
         List<ProductResponseDto> productResponseDtoList = ProductResponseDto.toDtoList(productList);

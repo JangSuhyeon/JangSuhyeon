@@ -26,6 +26,9 @@ public class Product {
     private Long cateId;
 
     @Column
+    private Long brdId;
+
+    @Column
     private LocalDateTime regDt;
 
     @PrePersist

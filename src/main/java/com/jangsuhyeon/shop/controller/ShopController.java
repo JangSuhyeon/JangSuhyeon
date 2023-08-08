@@ -1,16 +1,18 @@
 package com.jangsuhyeon.shop.controller;
 
+import com.google.gson.Gson;
+import com.jangsuhyeon.shop.domain.dto.BrandResponseDto;
 import com.jangsuhyeon.shop.domain.dto.CategoryResponseDto;
 import com.jangsuhyeon.shop.domain.dto.ProductResponseDto;
 import com.jangsuhyeon.shop.service.ShopService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,12 +44,33 @@ public class ShopController {
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("currentCategory", cateId);
 
-        // Todo 카테고리에 맞는 상품만 조회
+        // 브랜드 조회
+        List<BrandResponseDto> brandList = shopService.findAllBrand();
+        model.addAttribute("brandList", brandList);
+
+        // 해당 카테고리의 상품만 조회
         Pageable pageable = PageRequest.of(0,9);
         List<ProductResponseDto> productList = shopService.findAllByCateId(cateId, pageable);
         model.addAttribute("productList", productList);
 
         return "pages/shop/product";
+    }
+
+    // Todo 분석필요
+    // 상품 조회 JSON
+    @ResponseBody
+    @GetMapping("/product/json")
+    public ResponseEntity getProductListAsJson (@RequestParam(value = "checkedBrand") String checkedBrandJson, Model model) {
+
+        // JSON -> Long[]
+        Long[] checkedBrands = new Gson().fromJson(checkedBrandJson, Long[].class);
+
+        // Todo 카테고리 조건도 추가
+        // 해당 브랜드의 상품만 조회
+        List<ProductResponseDto> productList = shopService.findByBrandIdIn(checkedBrands);
+        model.addAttribute("productList", productList);
+
+        return ResponseEntity.ok(productList);
     }
 
 }
