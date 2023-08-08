@@ -9,6 +9,7 @@ function reloadProductList(checkedBrand) {
         success:function (res) {
             console.log(res);
             // Todo 상품 목록 출력
+            $('#product-list').replaceWith(res);
         },
         error:function () {
             console.error("Failed to reload the product list.")

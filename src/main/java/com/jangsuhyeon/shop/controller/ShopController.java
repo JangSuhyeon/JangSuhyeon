@@ -67,7 +67,8 @@ public class ShopController {
 
         // Todo 카테고리 조건도 추가
         // 해당 브랜드의 상품만 조회
-        List<ProductResponseDto> productList = shopService.findByBrandIdIn(checkedBrands);
+        Pageable pageable = PageRequest.of(0,9);
+        List<ProductResponseDto> productList = shopService.findByBrdIdIn(checkedBrands, pageable);
         model.addAttribute("productList", productList);
 
         return ResponseEntity.ok(productList);

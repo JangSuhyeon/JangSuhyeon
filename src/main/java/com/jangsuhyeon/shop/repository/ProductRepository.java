@@ -14,5 +14,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findAllByCateIdOrderByRegDtDesc(Long cateId, Pageable pageable);
 
-    Page<Product> findByBrandIdIn(Long[] checkedBrands);
+    Page<Product> findByBrdIdIn(Long[] checkedBrands, Pageable pageable);
 }

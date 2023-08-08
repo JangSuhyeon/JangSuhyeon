@@ -74,10 +74,10 @@ public class ShopService {
     }
 
     // 해당 브랜드의 상품 조회
-    public List<ProductResponseDto> findByBrandIdIn(Long[] checkedBrands) {
+    public List<ProductResponseDto> findByBrdIdIn(Long[] checkedBrands, Pageable pageable) {
 
         // 등록순
-        Page<Product> productList = productRepository.findByBrandIdIn(checkedBrands);
+        Page<Product> productList = productRepository.findByBrdIdIn(checkedBrands, pageable);
 
         // Entity -> DTO
         List<ProductResponseDto> productResponseDtoList = ProductResponseDto.toDtoList(productList);
