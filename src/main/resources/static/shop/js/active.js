@@ -110,12 +110,13 @@
             values: [value_min, value_max],
             slide: function (event, ui) {
                 var result = label_result + " " + ui.values[0].toLocaleString() + unit + ' - ' + ui.values[1].toLocaleString() + unit;
-                console.log(t);
                 t.closest('.slider-range').find('.range-price').html(result);
             },
             change: function(event, ui) {
                 var minValue = ui.values[0];
                 var maxValue = ui.values[1];
+                $('#maxPrice').val(maxValue);
+                $('#minPrice').val(minValue);
 
                 // 상품 목록 reload
                 reloadProductList(maxValue, minValue)

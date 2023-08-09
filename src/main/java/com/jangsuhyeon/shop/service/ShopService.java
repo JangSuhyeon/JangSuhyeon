@@ -75,10 +75,10 @@ public class ShopService {
     }
 
     // 해당 카테고리 + 브랜드의 상품만 조회
-    public List<ProductResponseDto> findByCateIdAndBrdIdIn(Long cateId, Long[] checkedBrands, Pageable pageable) {
+    public List<ProductResponseDto> findByCateIdAndBrdIdInAndPrtPriceGreaterThanEqualAndPrtPriceLessThanEqual(Long cateId, Long[] checkedBrands, int maxPrice, int minPrice, Pageable pageable) {
 
         // 등록순
-        Page<Product> productList = productRepository.findByCateIdAndBrdIdIn(cateId, checkedBrands, pageable);
+        Page<Product> productList = productRepository.findByCateIdAndBrdIdInAndPrtPriceGreaterThanEqualAndPrtPriceLessThanEqual(cateId, checkedBrands, minPrice, maxPrice, pageable);
 
         // Entity -> DTO
         List<ProductResponseDto> productResponseDtoList = ProductResponseDto.toDtoList(productList);

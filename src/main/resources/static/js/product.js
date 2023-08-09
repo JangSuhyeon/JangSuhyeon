@@ -16,14 +16,20 @@ function reloadProductList(maxPrice, minPrice) {
         data:{
             cateId : $('#currentCategory').val(),
             checkedBrand: JSON.stringify(checkedBrand),
-            maxPrice : maxPrice === null ? $('#maxPrice').val() : maxPrice,
-            minPrice : minPrice === null ? $('#minPrice').val() : minPrice
+            maxPrice : typeof maxPrice === 'undefined' ? $('#maxPrice').val() : maxPrice,
+            minPrice : typeof minPrice === 'undefined' ? $('#minPrice').val() : minPrice
         },
         contentType: "application/json; charset=utf-8",
         success:function (res) {
-            $('#product-list').replaceWith(res);
-            
-            // Todo 없으면 표시해주기
+            var productList = $('#product-list');
+            productList.replaceWith(res);
+
+            // 상품이 없으면 안내 문구
+            var updatedProductList = $('#product-list');
+            if (updatedProductList.children().length <= 0) {
+                var noProductInfo = $('<p class="noProductInfo">').text('상품이 없습니다.');
+                updatedProductList.append(noProductInfo);
+            }
         },
         error:function () {
             console.error("Failed to reload the product list.")

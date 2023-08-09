@@ -53,7 +53,6 @@ public class ShopController {
         HashMap<String, Integer> priceRange = shopService.findByPrtPriceRange();
         model.addAttribute("priceRange", priceRange);
 
-        // Todo findAllByCateId 합쳐도 될 것 같은데?
         // 해당 카테고리의 상품만 조회
         Pageable pageable = PageRequest.of(0,9);
         List<ProductResponseDto> productList = shopService.findAllByCateId(cateId, pageable);
@@ -71,14 +70,13 @@ public class ShopController {
             @RequestParam(value = "maxPrice") int maxPrice,
             @RequestParam(value = "minPrice") int minPrice,
             Model model) {
-        System.out.println(maxPrice);
-        System.out.println(minPrice);
+
         // JSON -> Long[]
         Long[] checkedBrands = new Gson().fromJson(checkedBrandJson, Long[].class);
 
         // 해당 카테고리 + 브랜드의 상품만 조회
         Pageable pageable = PageRequest.of(0,9);
-        List<ProductResponseDto> productList = shopService.findByCateIdAndBrdIdIn(cateId, checkedBrands, pageable);
+        List<ProductResponseDto> productList = shopService.findByCateIdAndBrdIdInAndPrtPriceGreaterThanEqualAndPrtPriceLessThanEqual(cateId, checkedBrands, maxPrice, minPrice, pageable);
         model.addAttribute("productList", productList);
 
         return "pages/shop/product :: #product-list";
