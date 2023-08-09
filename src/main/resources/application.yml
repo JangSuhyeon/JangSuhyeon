@@ -1,5 +1,0 @@
-# hymeleaf ??
-thymeleaf:
-  cache: false
-  prefix: classpath:/templates/
-  suffix: .html
