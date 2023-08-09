@@ -1,5 +1,14 @@
-# hymeleaf ??
-thymeleaf:
-  cache: false
-  prefix: classpath:/templates/
-  suffix: .html
+# DB
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql.cseaunptfmn2.us-east-2.rds.amazonaws.com:3306/JangSuhyeon?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: admin
+    password: tngus6832
+  jpa:
+    hibernate:
+      ddl-auto: update
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
