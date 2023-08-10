@@ -82,4 +82,12 @@ public class ShopController {
         return "pages/shop/product :: #product-list";
     }
 
+    @GetMapping("/product/{prtId}")
+    public String goToProductDetail(@PathVariable("prtId")String prtId) {
+
+        System.out.println("prtId : " + prtId);
+
+        return "pages/shop/detail";
+    }
+
 }
