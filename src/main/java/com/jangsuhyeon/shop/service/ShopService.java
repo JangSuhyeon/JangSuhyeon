@@ -95,4 +95,16 @@ public class ShopService {
 
         return priceRange;
     }
+
+    // 상품 상세정보 조회
+    public ProductResponseDto findByPrtId(Long prtId) {
+
+        // 상품 상세정보 조회
+        Product product = productRepository.findByPrtId(prtId);
+
+        // Entity -> DTO
+        ProductResponseDto productResponseDto = ProductResponseDto.toDto(product);
+
+        return productResponseDto;
+    }
 }

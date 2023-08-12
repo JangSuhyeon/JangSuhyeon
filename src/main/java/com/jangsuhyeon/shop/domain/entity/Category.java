@@ -3,6 +3,8 @@ package com.jangsuhyeon.shop.domain.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.List;
+
 @Entity
 @Getter
 public class Category {
@@ -13,5 +15,8 @@ public class Category {
 
     @Column
     private String cateName;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> productList;
 
 }

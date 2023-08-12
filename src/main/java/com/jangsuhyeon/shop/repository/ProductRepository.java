@@ -23,4 +23,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT MIN(p.prtPrice) FROM Product p")
     int findMinPrtPrice();
+
+    Product findByPrtId(Long prtId);
 }

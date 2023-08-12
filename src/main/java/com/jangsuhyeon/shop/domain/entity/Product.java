@@ -31,6 +31,10 @@ public class Product {
     @Column
     private LocalDateTime regDt;
 
+    @ManyToOne
+    @JoinColumn(name = "cateId", insertable = false, updatable = false)
+    private Category category;
+
     @PrePersist
     public void setRegDt() {
         this.regDt = LocalDateTime.now();

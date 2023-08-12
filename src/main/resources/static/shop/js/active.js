@@ -67,13 +67,6 @@
         $('select').niceSelect();
     }
 
-    // :: 6.0 Magnific Active Code
-    if ($.fn.magnificPopup) {
-        $('.gallery_img').magnificPopup({
-            type: 'image'
-        });
-    }
-
     // :: 7.0 Nicescroll Active Code
     if ($.fn.niceScroll) {
         $(".cart-table table").niceScroll();

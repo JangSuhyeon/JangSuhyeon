@@ -82,10 +82,13 @@ public class ShopController {
         return "pages/shop/product :: #product-list";
     }
 
+    // 상품 상세 화면으로
     @GetMapping("/product/{prtId}")
-    public String goToProductDetail(@PathVariable("prtId")String prtId) {
+    public String goToProductDetail(@PathVariable("prtId")Long prtId, Model model) {
 
-        System.out.println("prtId : " + prtId);
+        // 상품 상세정보 조회
+        ProductResponseDto product = shopService.findByPrtId(prtId);
+        model.addAttribute("product", product);
 
         return "pages/shop/detail";
     }

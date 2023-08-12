@@ -97,7 +97,7 @@
 
     <div class="row" id="product-list">
       <div class="col-12 col-sm-6 col-md-12 col-xl-6" th:each="product : ${productList}">
-        <div class="single-product-wrapper">
+        <div class="single-product-wrapper" style="cursor: pointer" th:onclick="|location.href='/shop/product/${product.prtId}'|">
           <!-- Product Image -->
           <div class="product-img">
             <img th:src="${product.prtImgUrl}" alt="">
