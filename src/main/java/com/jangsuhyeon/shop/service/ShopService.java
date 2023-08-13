@@ -1,12 +1,12 @@
 package com.jangsuhyeon.shop.service;
 
-import com.jangsuhyeon.shop.domain.dto.BrandResponseDto;
-import com.jangsuhyeon.shop.domain.dto.CategoryResponseDto;
-import com.jangsuhyeon.shop.domain.dto.ProductResponseDto;
+import com.jangsuhyeon.shop.domain.dto.*;
 import com.jangsuhyeon.shop.domain.entity.Brand;
+import com.jangsuhyeon.shop.domain.entity.Cart;
 import com.jangsuhyeon.shop.domain.entity.Category;
 import com.jangsuhyeon.shop.domain.entity.Product;
 import com.jangsuhyeon.shop.repository.BrandRepository;
+import com.jangsuhyeon.shop.repository.CartRepository;
 import com.jangsuhyeon.shop.repository.CategoryRepository;
 import com.jangsuhyeon.shop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +25,7 @@ public class ShopService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
     private final BrandRepository brandRepository;
+    private final CartRepository cartRepository;
 
     // 전체 상품 조회
     public List<ProductResponseDto> findAll(Pageable pageable) {
@@ -106,5 +107,34 @@ public class ShopService {
         ProductResponseDto productResponseDto = ProductResponseDto.toDto(product);
 
         return productResponseDto;
+    }
+
+    // 장바구니 추가
+    public void addToCart(CartRequestDto product) {
+
+        Cart cartProduct = cartRepository.findByPrtId(product.getPrtId());
+
+        // 이미 장바구니에 있는 상품이라면 수량만 추가, 없으면 상품 추가
+        if (cartProduct != null) {
+            cartProduct.updateQty(cartProduct.getQty() + product.getQty());
+            cartRepository.save(cartProduct);
+        } else {
+            // DTO -> Entity
+            Cart cart = Cart.toEntity(product);
+            cartRepository.save(cart);
+        }
+    }
+
+    // 장바구니 조회
+    public List<CartResponseDto> findCartProduct() {
+        List<ProductResponseDto> productResponseDtoList = new ArrayList<>();
+
+        // 장바구니 조회
+        List<Cart> cartList = cartRepository.findAll();
+
+        // Entity -> DTO
+        List<CartResponseDto> cartResponseDtoList = CartResponseDto.toDtoList(cartList);
+
+        return cartResponseDtoList;
     }
 }

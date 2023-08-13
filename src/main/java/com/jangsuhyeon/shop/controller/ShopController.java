@@ -1,15 +1,11 @@
 package com.jangsuhyeon.shop.controller;
 
 import com.google.gson.Gson;
-import com.jangsuhyeon.shop.domain.dto.BrandResponseDto;
-import com.jangsuhyeon.shop.domain.dto.CategoryResponseDto;
-import com.jangsuhyeon.shop.domain.dto.ProductResponseDto;
+import com.jangsuhyeon.shop.domain.dto.*;
 import com.jangsuhyeon.shop.service.ShopService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -91,6 +87,21 @@ public class ShopController {
         model.addAttribute("product", product);
 
         return "pages/shop/detail";
+    }
+
+    // 장바구니 화면으로
+    @PostMapping("/cart")
+    public String goToCart(CartRequestDto product, Model model) {
+
+        // Todo 추가할때만 추가되어야 함,,
+        // 장바구니 추가
+        shopService.addToCart(product);
+
+        // 장바구니 조회
+        List<CartResponseDto> cartList = shopService.findCartProduct();
+        model.addAttribute("cartList", cartList);
+
+        return "pages/shop/cart";
     }
 
 }
