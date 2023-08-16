@@ -17,6 +17,7 @@ public class ProductResponseDto {
     private String prtName;
     private int prtPrice;
     private String prtImgUrl;
+    private Category category;
 
     public static ProductResponseDto toDto(Product product) {
         return ProductResponseDto.builder()
@@ -24,6 +25,7 @@ public class ProductResponseDto {
                 .prtName(product.getPrtName())
                 .prtPrice(product.getPrtPrice())
                 .prtImgUrl(product.getPrtImgUrl())
+                .category(product.getCategory())
                 .build();
     }
 

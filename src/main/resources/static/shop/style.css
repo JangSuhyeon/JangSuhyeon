@@ -11,3 +11,11 @@
     /* ---------------------------------------
     ##### - PLACE YOUR CUSTOM CSS HERE - #####
     --------------------------------------- */
+
+
+
+.noProductInfo {
+    width:100%;
+    text-align:center;
+    color:#888;
+}

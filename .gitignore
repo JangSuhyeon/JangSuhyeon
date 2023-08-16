@@ -38,4 +38,3 @@ out/
 
 .gitignore
 application.yml
-!/.gitignore

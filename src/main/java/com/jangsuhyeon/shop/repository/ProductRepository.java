@@ -16,11 +16,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findAllByCateIdOrderByRegDtDesc(Long cateId, Pageable pageable);
 
-    Page<Product> findByCateIdAndBrdIdIn(Long cateId, Long[] brdId, Pageable pageable);
+    Page<Product> findByCateIdAndBrdIdInAndPrtPriceGreaterThanEqualAndPrtPriceLessThanEqual(Long cateId, Long[] brdId, int minPrice, int maxPrice, Pageable pageable);
 
     @Query("SELECT MAX(p.prtPrice) FROM Product p")
     int findMaxPrtPrice();
 
     @Query("SELECT MIN(p.prtPrice) FROM Product p")
     int findMinPrtPrice();
+
+    Product findByPrtId(Long prtId);
 }

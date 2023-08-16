@@ -841,8 +841,6 @@ img {
               height: 70px; } }
           .main-content-wrapper .single-product-area .single_product_thumb .carousel-indicators li.active {
             border: 2px solid #fbb710; }
-      .main-content-wrapper .single-product-area .single_product_thumb .carousel-item a {
-        cursor: zoom-in; }
     .main-content-wrapper .single-product-area .single_product_desc {
       position: relative;
       z-index: 1; }

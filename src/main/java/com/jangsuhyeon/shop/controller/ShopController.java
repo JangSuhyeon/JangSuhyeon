@@ -1,15 +1,11 @@
 package com.jangsuhyeon.shop.controller;
 
 import com.google.gson.Gson;
-import com.jangsuhyeon.shop.domain.dto.BrandResponseDto;
-import com.jangsuhyeon.shop.domain.dto.CategoryResponseDto;
-import com.jangsuhyeon.shop.domain.dto.ProductResponseDto;
+import com.jangsuhyeon.shop.domain.dto.*;
 import com.jangsuhyeon.shop.service.ShopService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +49,6 @@ public class ShopController {
         HashMap<String, Integer> priceRange = shopService.findByPrtPriceRange();
         model.addAttribute("priceRange", priceRange);
 
-        // Todo findAllByCateId 합쳐도 될 것 같은데?
         // 해당 카테고리의 상품만 조회
         Pageable pageable = PageRequest.of(0,9);
         List<ProductResponseDto> productList = shopService.findAllByCateId(cateId, pageable);
@@ -71,17 +66,42 @@ public class ShopController {
             @RequestParam(value = "maxPrice") int maxPrice,
             @RequestParam(value = "minPrice") int minPrice,
             Model model) {
-        System.out.println(maxPrice);
-        System.out.println(minPrice);
+
         // JSON -> Long[]
         Long[] checkedBrands = new Gson().fromJson(checkedBrandJson, Long[].class);
 
         // 해당 카테고리 + 브랜드의 상품만 조회
         Pageable pageable = PageRequest.of(0,9);
-        List<ProductResponseDto> productList = shopService.findByCateIdAndBrdIdIn(cateId, checkedBrands, pageable);
+        List<ProductResponseDto> productList = shopService.findByCateIdAndBrdIdInAndPrtPriceGreaterThanEqualAndPrtPriceLessThanEqual(cateId, checkedBrands, maxPrice, minPrice, pageable);
         model.addAttribute("productList", productList);
 
         return "pages/shop/product :: #product-list";
+    }
+
+    // 상품 상세 화면으로
+    @GetMapping("/product/{prtId}")
+    public String goToProductDetail(@PathVariable("prtId")Long prtId, Model model) {
+
+        // 상품 상세정보 조회
+        ProductResponseDto product = shopService.findByPrtId(prtId);
+        model.addAttribute("product", product);
+
+        return "pages/shop/detail";
+    }
+
+    // 장바구니 화면으로
+    @PostMapping("/cart")
+    public String goToCart(CartRequestDto product, Model model) {
+
+        // Todo 추가할때만 추가되어야 함,,
+        // 장바구니 추가
+        shopService.addToCart(product);
+
+        // 장바구니 조회
+        List<CartResponseDto> cartList = shopService.findCartProduct();
+        model.addAttribute("cartList", cartList);
+
+        return "pages/shop/cart";
     }
 
 }
