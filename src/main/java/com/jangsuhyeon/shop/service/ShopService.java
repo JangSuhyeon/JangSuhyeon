@@ -1,14 +1,8 @@
 package com.jangsuhyeon.shop.service;
 
 import com.jangsuhyeon.shop.domain.dto.*;
-import com.jangsuhyeon.shop.domain.entity.Brand;
-import com.jangsuhyeon.shop.domain.entity.Cart;
-import com.jangsuhyeon.shop.domain.entity.Category;
-import com.jangsuhyeon.shop.domain.entity.Product;
-import com.jangsuhyeon.shop.repository.BrandRepository;
-import com.jangsuhyeon.shop.repository.CartRepository;
-import com.jangsuhyeon.shop.repository.CategoryRepository;
-import com.jangsuhyeon.shop.repository.ProductRepository;
+import com.jangsuhyeon.shop.domain.entity.*;
+import com.jangsuhyeon.shop.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +20,8 @@ public class ShopService {
     private final CategoryRepository categoryRepository;
     private final BrandRepository brandRepository;
     private final CartRepository cartRepository;
+    
+    private final PaymentRepository paymentRepository;
 
     // 전체 상품 조회
     public List<ProductResponseDto> findAll(Pageable pageable) {
@@ -136,5 +132,28 @@ public class ShopService {
         List<CartResponseDto> cartResponseDtoList = CartResponseDto.toDtoList(cartList);
 
         return cartResponseDtoList;
+    }
+
+    // 장바구니 -> 주문내역
+    public void payment() {
+        // 장바구니 조회
+        List<Cart> cartList = cartRepository.findAll();
+
+        // Cart -> Payment
+        List<Payment> paymentList = new ArrayList<>();
+        for (Cart cart : cartList) {
+            Payment payment = Payment.builder()
+                    .prtId(cart.getPrtId())
+                    .prtPrice(cart.getProduct().getPrtPrice())
+                    .qty(cart.getQty())
+                    .totalAmt(cart.getProduct().getPrtPrice() * cart.getQty())
+                    .build();
+            paymentList.add(payment);
+        }
+
+        // 주문내역에 저장
+        paymentRepository.saveAll(paymentList);
+
+        // Todo 장바구니 초기화
     }
 }
