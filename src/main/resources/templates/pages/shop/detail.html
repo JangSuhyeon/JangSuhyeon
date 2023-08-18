@@ -54,7 +54,7 @@
                     </div>
 
                     <!-- Add to Cart Form -->
-                    <form class="cart clearfix" th:action="@{/shop/cart}" method="post">
+                    <form class="cart clearfix" id="addToCartFrm">
                         <input type="hidden" name="prtId" th:value="${product.prtId}">
                         <div class="cart-btn d-flex mb-50">
                             <p>수량</p>
@@ -64,7 +64,7 @@
                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                             </div>
                         </div>
-                        <button type="submit" name="addtocart" value="5" class="btn amado-btn">장바구니 추가</button>
+                        <button type="button" id="addToCartBtn" value="5" class="btn amado-btn">장바구니 추가</button>
                     </form>
 
                 </div>
@@ -74,3 +74,4 @@
 </div>
 </div>
 <!-- Product Details Area End -->
+<script th:src="@{/js/cart.js}"></script>
