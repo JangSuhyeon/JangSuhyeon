@@ -95,7 +95,7 @@ public class ShopController {
     public String goToCart(Model model) {
 
         // 장바구니 조회
-        List<CartResponseDto> cartList = shopService.findCartProduct();
+        List<CartResponseDto> cartList = shopService.findCart();
         model.addAttribute("cartList", cartList);
 
         return "pages/shop/cart";
@@ -121,6 +121,16 @@ public class ShopController {
         shopService.payment();
 
         return ResponseEntity.ok("Success!");
+    }
+
+    @GetMapping("/order")
+    public String goToOrder(Model model) {
+
+        // 주문내역 조회
+        List<PaymentResponseDto> paymentList = shopService.findPayment();
+        model.addAttribute("paymentList", paymentList);
+
+        return "pages/shop/order";
     }
 
 }

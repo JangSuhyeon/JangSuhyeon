@@ -39,6 +39,10 @@ public class Product {
     @JoinColumn(name = "prtId", insertable = false, updatable = false)
     private Cart cart;
 
+    @OneToOne
+    @JoinColumn(name = "prtId", insertable = false, updatable = false)
+    private Payment payment;
+
     @PrePersist
     public void setRegDt() {
         this.regDt = LocalDateTime.now();

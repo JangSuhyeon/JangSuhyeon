@@ -1396,3 +1396,9 @@ img {
 /* ##### The End ##### */
 
 /*# sourceMappingURL=core-style.css.map */
+
+.order-table-area table thead tr th {
+  flex:0 0 25% !important;
+  width:20% !important;
+  max-width: 20% !important;
+}

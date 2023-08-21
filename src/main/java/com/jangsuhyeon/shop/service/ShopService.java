@@ -20,7 +20,6 @@ public class ShopService {
     private final CategoryRepository categoryRepository;
     private final BrandRepository brandRepository;
     private final CartRepository cartRepository;
-    
     private final PaymentRepository paymentRepository;
 
     // 전체 상품 조회
@@ -122,7 +121,7 @@ public class ShopService {
     }
 
     // 장바구니 조회
-    public List<CartResponseDto> findCartProduct() {
+    public List<CartResponseDto> findCart() {
         List<ProductResponseDto> productResponseDtoList = new ArrayList<>();
 
         // 장바구니 조회
@@ -155,5 +154,17 @@ public class ShopService {
         paymentRepository.saveAll(paymentList);
 
         // Todo 장바구니 초기화
+    }
+
+    // 주문내역 조회
+    public List<PaymentResponseDto> findPayment() {
+
+        // 주문내역 조회
+        List<Payment> paymentList = paymentRepository.findAll();
+
+        // Entity -> DTO
+        List<PaymentResponseDto> paymentResponseDtoList = PaymentResponseDto.toDtoList(paymentList);
+
+        return paymentResponseDtoList;
     }
 }

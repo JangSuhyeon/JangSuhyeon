@@ -3,10 +3,12 @@ package com.jangsuhyeon.shop.domain.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -31,6 +33,9 @@ public class Payment {
 
     @Column
     private LocalDateTime payDt;
+
+    @OneToOne(mappedBy = "payment")
+    private Product product;
 
     @PrePersist
     public void setPayDt(){
