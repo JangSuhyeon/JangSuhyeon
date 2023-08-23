@@ -37,31 +37,21 @@
                                 <span th:text="${#numbers.formatInteger(payment.prtPrice, 3, 'COMMA') + '원'}"></span>
                             </td>
                             <td class="qty">
-                                <div class="qty-btn d-flex">
-                                    <p>수량</p>
-                                    <span th:tel="${payment.prtPrice}"></span>
-                                </div>
+                                <span th:text="${payment.qty}"></span>
                             </td>
                             <td class="price">
                                 <span th:text="${#numbers.formatInteger(payment.totalAmt, 3, 'COMMA') + '원'}"></span>
                             </td>
                         </tr>
+                        <tr class=total-tr>
+                            <td colspan="3">전체 주문금액</td>
+                            <td colspan="2">10,000원</td>
+                        </tr>
                         </tbody>
                     </table>
-                    <!--Todo 합계-->
+
                 </div>
             </div>
-            <!--<div class="col-12 col-lg-4">
-                <div class="cart-summary">
-                    <h5>전체 금액</h5>
-                    <ul class="summary-table">
-                        <li><span>total:</span> <span id="total"></span></li>
-                    </ul>
-                    <div class="cart-btn mt-100">
-                        <button id="payBtn" class="btn amado-btn w-100">결제하기</button>
-                    </div>
-                </div>
-            </div>-->
         </div>
     </div>
 </div>

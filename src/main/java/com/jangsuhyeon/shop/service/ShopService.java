@@ -153,7 +153,8 @@ public class ShopService {
         // 주문내역에 저장
         paymentRepository.saveAll(paymentList);
 
-        // Todo 장바구니 초기화
+        // 장바구니 초기화
+        cartRepository.deleteAll();
     }
 
     // 주문내역 조회

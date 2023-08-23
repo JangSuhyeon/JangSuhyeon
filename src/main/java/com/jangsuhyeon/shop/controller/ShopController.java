@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Controller
@@ -115,14 +116,15 @@ public class ShopController {
     // 결제
     @ResponseBody
     @PostMapping("/payment")
-    public ResponseEntity payment() {
-
-        // 장바구니 -> 주문내역
-        shopService.payment();
+    public ResponseEntity payment(@RequestBody Map<String,String> orders) {
+        System.out.println(orders);
+        // Todo 장바구니 -> 주문내역 (X) 주문내역 저장으로
+//        shopService.payment();
 
         return ResponseEntity.ok("Success!");
     }
 
+    // 주문내역 화면으로
     @GetMapping("/order")
     public String goToOrder(Model model) {
 

@@ -22,6 +22,7 @@
                             <th>상품명</th>
                             <th>금액</th>
                             <th>수량</th>
+                            <th>총 주문금액</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,6 +48,7 @@
                                     </div>
                                 </div>
                             </td>
+                            <td class="tr-sub-total" th:text="${#numbers.formatInteger(cart.product.prtPrice * cart.qty, 3, 'COMMA') + '원'}"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -59,7 +61,7 @@
                         <li><span>total:</span> <span id="total"></span></li>
                     </ul>
                     <div class="cart-btn mt-100">
-                        <button id="payBtn" class="btn amado-btn w-100">결제하기</button>
+                        <button class="btn amado-btn w-100" onclick="payment()">결제하기</button>
                     </div>
                 </div>
             </div>
@@ -67,5 +69,8 @@
     </div>
 </div>
 </div>
+
+<!--포트원 라이브러리 추가-->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
 <script th:src="@{/js/cart.js}"></script>
