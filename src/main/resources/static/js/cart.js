@@ -13,7 +13,7 @@ function calculateTotalAmt() {
 
 // 포트원 결제
 var IMP = window.IMP;    // 아임포트 JavaScript 라이브러리
-IMP.init('imp49336905'); // IMP 객체를 초기화
+IMP.init('imp49336905'); // Todo 변수로 변환 필요 ,IMP 객체를 초기화
 function payment() {
 
     // 주문번호 생성을 위함
@@ -27,7 +27,7 @@ function payment() {
     // 결제창 호출
     IMP.request_pay(
         {
-            pg: "kcp.A52CY",
+            pg: "kcp.A52CY", // Todo 변수로 변환 필요
             pay_method: "card",
             merchant_uid: "SHOP" + makeMerchantUid, // 주문번호
             name: "SHOP 가구 구매",                   // 상품명
