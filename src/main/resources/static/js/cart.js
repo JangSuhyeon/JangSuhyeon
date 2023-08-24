@@ -33,7 +33,7 @@ function payment() {
             name: "SHOP 가구 구매",                   // 상품명
             amount: 1004,                           // 결제금액
             buyer_email: "Iamport@chai.finance",    // 구매자 이메일
-            buyer_name: "포트원 기술지원팀",           // 구매자 이름
+            buyer_name: "포트원 기술지원팀",           // Todo 구매자 이름 로그인 정보로 수정 필요
             buyer_tel: "010-1234-5678",             // 구매자 번호
             buyer_addr: "서울특별시 강남구 삼성동",     // 구매자 주소
             buyer_postcode: "123-456",              // 구매자 번호
@@ -60,7 +60,7 @@ function payment() {
                         window.location.href = "/shop/order";
                     },
                     error:function () {
-                        alert('결제에 실패했습니다.');
+                        console.log("주문내역 저장에 실패했습니다.");
                     }
                 })
             } else {
