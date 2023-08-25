@@ -2,10 +2,16 @@ package com.jangsuhyeon.security.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Authority {
 
     @Id
@@ -19,5 +25,9 @@ public class Authority {
     @ManyToOne(fetch = FetchType.LAZY) // Todo 왜 일대다??, 엔티티가 실제로 사용되기 전까지 로딩되지 않음
     @JsonIgnore
     private Member member;
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 
 }

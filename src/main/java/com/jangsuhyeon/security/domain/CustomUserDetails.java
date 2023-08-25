@@ -1,4 +1,4 @@
-package com.jangsuhyeon.security.domain.dto;
+package com.jangsuhyeon.security.domain;
 
 import com.jangsuhyeon.security.domain.entity.Member;
 import lombok.RequiredArgsConstructor;

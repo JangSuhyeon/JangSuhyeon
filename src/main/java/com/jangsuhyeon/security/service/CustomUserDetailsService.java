@@ -1,6 +1,6 @@
 package com.jangsuhyeon.security.service;
 
-import com.jangsuhyeon.security.domain.dto.CustomUserDetails;
+import com.jangsuhyeon.security.domain.CustomUserDetails;
 import com.jangsuhyeon.security.domain.entity.Member;
 import com.jangsuhyeon.security.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

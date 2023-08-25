@@ -2,6 +2,7 @@ package com.jangsuhyeon.security.config;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -49,12 +51,18 @@ public class SecurityConfig {
                 // 조건별로 요청 허용/제한 설정
                 .authorizeHttpRequests(authorizeHttpRequests ->
                         // 회원가입과 로그인은 모두 승인
-                        authorizeHttpRequests.requestMatchers("/register", "/login").permitAll()
+                        authorizeHttpRequests.requestMatchers("/", "/register", "/login", "/comment/**").permitAll()
+                        //  정적 리소스 경로 모두 승인
+                        .requestMatchers("/img/**", "/css/**", "/js/**", "/lib/**").permitAll()
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         // /admin으로 시작하는 요청은 ADMIN 권한이 있는 유저에게만 허용
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         // /user 로 시작하는 요청은 USER 권한이 있는 유저에게만 허용
                         .requestMatchers("/user/**").hasRole("USER")
                         .anyRequest().denyAll()
+                )
+                .csrf(csrf -> csrf
+                        .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/comment/**")) // /comment 경로는 CSRF 보호 제외
                 )
                 // JWT 인증 필터 적용
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)

@@ -22,7 +22,7 @@ public class CommentController {
     @PostMapping(value = "")
     @ResponseBody
     public ResponseEntity saveComment(CommentRequestDto commentRequestDto) {
-
+        System.out.println(commentRequestDto);
         commentService.save(commentRequestDto);
 
         return ResponseEntity.status(HttpStatus.OK).body("Data saved!");
