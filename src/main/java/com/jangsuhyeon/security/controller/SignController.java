@@ -15,11 +15,23 @@ public class SignController {
 
     private final SignService signService;
 
+    // 로그인 화면으로
+    @GetMapping("/login")
+    public String goToLogin() {
+        return "pages/login";
+    }
+
     // 로그인
     @ResponseBody
     @PostMapping("/login")
     public ResponseEntity<SignResponse> signin(@RequestBody SignRequest request) {
         return new ResponseEntity<>(signService.login(request), HttpStatus.OK);
+    }
+
+    // 회원가입 화면으로
+    @GetMapping("/register")
+    public String goToRegister() {
+        return "pages/register";
     }
 
     // 회원가입

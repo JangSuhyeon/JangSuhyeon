@@ -30,11 +30,11 @@ public class SignService {
 
         // 요청 정보로 회원이 조회되지 않을 경우 예외 처리
         Member member = memberRepository.findByAccount(request.getAccount()).orElseThrow(() ->
-                new BadCredentialsException("잘못된 계정정보입니다."));
+                new BadCredentialsException("잘못된 계정 정보입니다."));
 
         // 비밀번호가 일치하지 않을 경우 예외 처리
         if (!passwordEncoder.matches(request.getPassword(), member.getPassword())){
-            throw new BadCredentialsException("잘못된 계정정보입니다.");
+            throw new BadCredentialsException("잘못된 계정 정보입니다.");
         }
 
         return SignResponse.builder()

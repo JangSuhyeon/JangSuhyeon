@@ -51,7 +51,7 @@ public class SecurityConfig {
                 // 조건별로 요청 허용/제한 설정
                 .authorizeHttpRequests(authorizeHttpRequests ->
                         // 회원가입과 로그인은 모두 승인
-                        authorizeHttpRequests.requestMatchers("/", "/register", "/login", "/comment/**").permitAll()
+                        authorizeHttpRequests.requestMatchers("/", "/register", "/login/**", "/comment/**").permitAll()
                         //  정적 리소스 경로 모두 승인
                         .requestMatchers("/img/**", "/css/**", "/js/**", "/lib/**").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
@@ -62,7 +62,8 @@ public class SecurityConfig {
                         .anyRequest().denyAll()
                 )
                 .csrf(csrf -> csrf
-                        .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/comment/**")) // /comment 경로는 CSRF 보호 제외
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/comment/**")) // /comment 경로는 CSRF 보호 제외
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/login/**")) // /comment 경로는 CSRF 보호 제외
                 )
                 // JWT 인증 필터 적용
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
@@ -80,7 +81,10 @@ public class SecurityConfig {
                             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                             response.setCharacterEncoding("utf-8");
                             response.setContentType("text/html; charset=UTF-8");
-                            response.getWriter().write("인증되지 않은 사용자입니다.");
+                            response.getWriter().write("인증되지 않은 사용자입니다. 로그인이 필요합니다.");
+
+                            // 로그인 페이지로 리다이렉트
+                            response.sendRedirect("/login");
                         })
                 );
 

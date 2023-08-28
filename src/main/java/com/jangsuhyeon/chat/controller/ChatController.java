@@ -8,9 +8,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/chat")
 public class ChatController {
 
-    @GetMapping("")
-    public String goToLogin() {
-        return "pages/chat/login";
-    }
-
 }
