@@ -51,7 +51,7 @@ public class SecurityConfig {
                 // 조건별로 요청 허용/제한 설정
                 .authorizeHttpRequests(authorizeHttpRequests ->
                         // 회원가입과 로그인은 모두 승인
-                        authorizeHttpRequests.requestMatchers("/", "/register", "/login/**", "/comment/**").permitAll()
+                        authorizeHttpRequests.requestMatchers("/", "/register/**", "/login/**", "/comment/**").permitAll()
                         //  정적 리소스 경로 모두 승인
                         .requestMatchers("/img/**", "/css/**", "/js/**", "/lib/**").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
@@ -61,9 +61,10 @@ public class SecurityConfig {
                         .requestMatchers("/user/**").hasRole("USER")
                         .anyRequest().denyAll()
                 )
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers(new AntPathRequestMatcher("/comment/**")) // /comment 경로는 CSRF 보호 제외
-                        .ignoringRequestMatchers(new AntPathRequestMatcher("/login/**")) // /comment 경로는 CSRF 보호 제외
+                .csrf(csrf -> csrf // 아래 경로는 CSRF 보호 제외
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/comment/**"))
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/login/**"))
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/register/**"))
                 )
                 // JWT 인증 필터 적용
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)

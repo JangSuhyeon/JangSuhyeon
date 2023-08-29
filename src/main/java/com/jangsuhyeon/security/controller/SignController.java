@@ -6,6 +6,8 @@ import com.jangsuhyeon.security.service.SignService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,8 @@ public class SignController {
     @ResponseBody
     @PostMapping("/login")
     public ResponseEntity<SignResponse> signin(@RequestBody SignRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getName());
         return new ResponseEntity<>(signService.login(request), HttpStatus.OK);
     }
 
