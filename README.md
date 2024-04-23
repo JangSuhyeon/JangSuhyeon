@@ -1,13 +1,63 @@
-<h1 align="center">Hi 👋, I'm Jangsuhyeon</h1>
-<h3 align="center">A passionate backend developer from India</h3>
+### 안녕하세요. 백엔드 개발자 장수현입니다😊
 
-- 📫 How to reach me **shjang0043@gmail.com**
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-</p>
+**◾ 포트폴리오 사이트 주소**: http://www.jangsuhyeon.com/
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://mariadb.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/mariadb/mariadb-icon.svg" alt="mariadb" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://spring.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> </a> </p>
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=jangsuhyeon&show_icons=true&locale=en" alt="jangsuhyeon" /></p>
+### Skills 🛠️
+- **Back-end**:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Java, Spring Boot, Spring Security, MyBatis, JPA/Hibernate, Gradle, Maven, MySQL, MariaDB
+- **Front-end**:   &nbsp;&nbsp;&nbsp;          HTML5/CSS3, Bootstrap, JSP, JSTL, Thymeleaf, JavaScript, jQuery
+- **Etc**: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      Intellij, Git/Github, Subversion
+
+### Work experience 👔
+| Job Position           | Company         | Field                         | Work Period       |
+| ---------------------- | --------------- | ----------------------------- | ----------------- |
+| **Research Scientist** | **SberDevices** | **AGI, LLM, RLHF, GigaChat**  | **2023-04 — now** |
+| NLP Team Lead          | SberDevices     | Search, Information Retrieval | 2022-10 — 2023-04 |
+| NLP Tech Lead          | Sber AI Lab     | NLP, MLOps, Mentoring         | 2021-05 — 2022-10 |
+| Senior NLP Engineer    | Tinkoff AI Lab  | Virtual Assistant "Oleg"      | 2021-02 — 2021-04 |
+| Middle NLP Engineer    | MTS AI Lab      | NER with Pseudo-Labeling      | 2020-05 — 2021-02 |
+| Junior Data Scientist  | Sberbank        | ML with Tabular Data, CV      | 2018-07 — 2020-05 |
+
+### Education 🎓
+- [Master’s Degree](https://github.com/dayyass/prior-knowledge-layer-for-sequence-tagging) @ Lomonosov Moscow State University (2019 - 2023)
+- [Bachelor's Degree](https://github.com/dayyass/bachelor-diploma) @ Plekhanov Russian University of Economics (2015 - 2019)
+
+### Projects 🐾
+- [QaNER](https://github.com/dayyass/QaNER) - unofficial implementation of QaNER paper (NER via Extractive Question Answering)
+- [RLLib](https://github.com/dayyass/rllib) - Reinforcement Learning library
+- [MUSE as Service](https://github.com/dayyass/muse-as-service) - REST API for sentence embedding using Multilingual Universal Sentence Encoder
+- [PyTorch NER](https://github.com/dayyass/pytorch-ner) - pipeline for training NER models using PyTorch
+- [Text Classification Baseline](https://github.com/dayyass/text-classification-baseline) - pipeline for building text classification TF-IDF + LogReg baselines
+- [Graph-Based Clustering](https://github.com/dayyass/graph-based-clustering) - clustering using graph connected components and spanning trees
+
+### Public talks 🗣
+- [From Model to Service: Flask + Gunicorn + Docker](https://youtu.be/onPlqEO0lN0) @ Sberloga
+- [QaNER - NER via Exractive QA](https://youtu.be/JRec8FpjhpM) @ Sberloga
+- [Git Hooks Is All You Need](https://youtu.be/92OMAtdVIAs) @ Sberloga
+- [Web-Service for Sentence Embeddings](https://youtu.be/ZayiaA84oXg) @ Sberloga
+- [How to start a career in DS](https://youtu.be/_YrX25CpJWs) @ REU Data Science Club
+
+### Certifications 📜
+- [Practical Reinforcement Learning (with honors)](https://www.coursera.org/account/accomplishments/certificate/AUVVSHZFH7XZ) @ Coursera
+- [Introduction to Deep Learning (with honors)](https://www.coursera.org/account/accomplishments/certificate/D4VMH74AJHHK) @ Coursera
+- [Bayesian Methods for Machine Learning (with honors)](https://www.coursera.org/account/accomplishments/certificate/5R62SGB3G6GF) @ Coursera
+- [Hadoop. System for processing large amounts of data](https://stepik.org/cert/166893) @ Stepik
+
+<!--- ### Conference participation 📈
+- IX International Scientific and Practical [Conference](https://it-mm.rea.ru/eng) named after A.I. Kitov "Information Technologies and Mathematical Methods in Economics and Management"
+- Deep and Machine Learning methods for document clustering and classification [tutorial](https://indico-hlit.jinr.ru/event/146/overview) in frames of The XXIII International Scientific [Conference](https://indico.jinr.ru/event/756) of Young Scientists and Specialists (AYSS-2019)  -->
+
+### Hackathon participation 💻
+- [deNews](https://ethglobal.com/showcase/denews-djqvk) @ ETHOnline 2022
+- [Alzheimer's MRI Analysis](https://github.com/dayyass/synthetic_health_data_hackathon_2020) @ Synthetic Health Data Hackathon 2020
+
+### Achievements 🏆
+- Published [10 packages](https://pypi.org/user/dayyass/) to **PyPI** with [25k+](https://pepy.tech) downloads
+- Contributor to **PyTorch**, **Scikit-Learn**, **SciPy**
+- Open Data Science **Best Contributor 2020**
+
+### GitHub Stats ⭐
+[![Dani El-Ayyass' github stats](https://github-readme-stats.vercel.app/api?username=dayyass&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
+
+More information in my [LinkedIn](https://www.linkedin.com/in/dayyass/) 🚀
